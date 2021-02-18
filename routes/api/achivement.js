@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 const Achivement = require("../../model/Achivement");
 const { body, validationResult } = require("express-validator");
-router.get("/", (req, res) => {
+router.get("/",async (req, res) => {
   try {
-    const achivements = Achivement.find();
+    const achivements = await Achivement.find();
     return res.json(achivements);
   } catch (error) {
     return res.status(500).send("Server error");
