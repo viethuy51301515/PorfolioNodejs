@@ -3,6 +3,7 @@
 # dependencies
 /node_modules
 /profolio/node_modules
+/manager/node_modules
 /.pnp
 .pnp.js
 
