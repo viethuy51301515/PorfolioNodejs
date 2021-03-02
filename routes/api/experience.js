@@ -42,4 +42,38 @@ router.post(
     }
   }
 );
+router.put('/:id', async (req,res) => {
+  try {
+    const experience = await Experience.findById(req.params.id);
+    if(experience){
+      experience.company = req.body.company;
+      experience.description = req.body.description;
+      experience.position = req.body.position;
+      experience.type = req.body.type;
+      experience.year = req.body.year;
+      await experience.save();
+
+
+    }
+
+    res.json(experience);
+  } catch (error) {
+    return error.status(500), send("server error");
+  } 
+});
+
+router.delete('/:id', (req,res) => {
+  try {
+    const experience = await Experience.findById(req.params.id);
+
+  if(experience){
+    await experience.remove();
+    res.json({msg:"removed"});
+  }
+  } catch (error) {
+    res.status(501).send("server error");
+  }
+  
+
+})
 module.exports = router;

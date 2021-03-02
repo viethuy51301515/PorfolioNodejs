@@ -42,4 +42,39 @@ router.post(
     }
   }
 );
+router.put('/:id', async (req,res) => {
+  try {
+    const achivement = await Achivement.findById(req.params.id);
+    if(achivement){
+      achivement.date = req.body.date;
+      achivement.des = req.body.des;
+      achivement.img = req.body.img;
+      achivement.link = req.body.link;
+      achivement.name = req.body.name;
+      achivement.title = req.body.title;
+      await achivement.save();
+
+
+    }
+
+    res.json(portfolio);
+  } catch (error) {
+    return error.status(500), send("server error");
+  } 
+});
+
+router.delete('/:id', (req,res) => {
+  try {
+    const achivement = await Achivement.findById(req.params.id);
+
+  if(achivement){
+    await achivement.remove();
+    res.json({msg:"removed"});
+  }
+  } catch (error) {
+    res.status(501).send("server error");
+  }
+  
+
+})
 module.exports = router;
