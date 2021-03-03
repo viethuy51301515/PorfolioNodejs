@@ -62,7 +62,7 @@ router.put('/:id', async (req,res) => {
   } 
 });
 
-router.delete('/:id', (req,res) => {
+router.delete('/:id', async (req,res) => {
   try {
     const experience = await Experience.findById(req.params.id);
 

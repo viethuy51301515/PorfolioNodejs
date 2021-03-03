@@ -63,7 +63,7 @@ router.put('/:id', async (req,res) => {
   } 
 });
 
-router.delete('/:id', (req,res) => {
+router.delete('/:id', async(req,res) => {
   try {
     const portfolio = await Portfolio.findById(req.params.id);
 
